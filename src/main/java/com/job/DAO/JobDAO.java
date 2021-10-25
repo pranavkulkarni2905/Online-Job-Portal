@@ -47,7 +47,7 @@ public class JobDAO {
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()) {
 				j=new Job();
-				j.setId(rs.getInt(1));
+				j.setId(rs.getString(1));
 				j.setJobName(rs.getString(2));
 				j.setJobLocation(rs.getString(3));
 				j.setJobCategory(rs.getString(4));
@@ -62,12 +62,12 @@ public class JobDAO {
 		}
 		return list;
 	}
-	public boolean deleteJob(int id) {
+	public boolean deleteJob(String id) {
 		boolean b=false;
 		con=DBconnection.getConnection();
 		try {
 			ps=con.prepareStatement("delete from job_info where job_id=?");
-			ps.setInt(1, id);
+			ps.setString(1, id);
 			int i=ps.executeUpdate();
 			if(i>0) {
 				b=true;
@@ -79,15 +79,16 @@ public class JobDAO {
 		
 		return b;
 	}
-	public Job getDataById(int id){
+	public Job getDataById(String id){
 		Job j=null;
 		con=DBconnection.getConnection();
 		try {
 			ps=con.prepareStatement("select * from job_info where job_id=?");
+			ps.setString(1, id);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()) {
 				j=new Job();
-				j.setId(rs.getInt(1));
+				j.setId(rs.getString(1));
 				j.setJobName(rs.getString(2));
 				j.setJobLocation(rs.getString(3));
 				j.setJobCategory(rs.getString(4));
@@ -102,7 +103,7 @@ public class JobDAO {
 		}
 		return j;
 	}
-	public boolean editJob(Job j,int id) {
+	public boolean editJob(Job j,String id) {
 		boolean b=false;
 		SimpleDateFormat f=new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		java.util.Date date=new Date();
@@ -114,7 +115,7 @@ public class JobDAO {
 			ps.setString(3, j.getJobStatus());
 			ps.setString(4, j.getJobDesc());
 			ps.setString(5, f.format(date));
-			ps.setInt(6, id);
+			ps.setString(6, id);
 			int i=ps.executeUpdate();
 			if(i>0) {
 				b=true;

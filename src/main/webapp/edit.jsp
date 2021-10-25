@@ -31,14 +31,14 @@
 </head>
 <body>
 	<%@include file="_nav.jsp"%>
-	
+
 	<%
-	int id=Integer.parseInt(request.getParameter("job_id"));
-	JobDAO jd=new JobDAO();
-	Job j=jd.getDataById(id);
+	String id = request.getParameter("job_id");
+	JobDAO jd = new JobDAO();
+	Job j = jd.getDataById(id);
 	%>
-	<input type="hidden" value="<%=j.getId() %>" name="job_id" >
-	<div class=container-fluid">
+
+	<div class="container-fluid">
 		<div class="card "
 			style="height: 620px; width: 800px; margin-left: 400px; padding: 30px; margin-top: 10px;">
 			<div class="card-body">
@@ -50,12 +50,13 @@
 					<div class="row">
 						<div class="col-md-12">
 							<form action="EditJobServlet" method="post">
-
+								<input type="hidden" value="<%=id%>" name="id">
 								<div class="form-group">
 									<label for="exampleInputPassword1">Enter Title</label> <input
 										type="text" class="form-control" id="exampleInputEmail1"
 										aria-describedby="emailHelp" placeholder="Enter your Title"
-										name="title" value="<%=j.getJobName() %>" readonly="readonly" required="required">
+										name="title" value="<%=j.getJobName()%>" readonly="readonly"
+										required="required">
 								</div>
 								<div class="row">
 									<div class="form-group">
@@ -63,37 +64,34 @@
 											type="text" class="form-control" id="exampleInputEmail1"
 											aria-describedby="emailHelp"
 											placeholder="Enter your Location" name="location"
-											required="required" value="<%=j.getJobLocation() %>" >
+											required="required" value="<%=j.getJobLocation()%>">
 									</div>
-									&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+									&nbsp&nbsp&nbsp&nbsp&nbsp
 									<div class="form-group">
-										<label for="exampleFormControlSelect1">Category</label> 
-										<input
+										<label for="exampleFormControlSelect1">Category</label> <input
 											type="text" class="form-control" id="exampleInputEmail1"
 											aria-describedby="emailHelp"
-											placeholder="Enter your Location" name="location"
-											required="required" value="<%=j.getJobCategory() %>" >
+											placeholder="Enter your Location" name="category"
+											required="required" value="<%=j.getJobCategory()%>">
 									</div>
-									&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+									&nbsp&nbsp&nbsp&nbsp&nbsp
 									<div class="form-group">
-									<label for="exampleFormControlSelect1">Status</label> 
-									<input
+										<label for="exampleFormControlSelect1">Status</label> <input
 											type="text" class="form-control" id="exampleInputEmail1"
 											aria-describedby="emailHelp"
-											placeholder="Enter your Location" name="location"
-											required="required" value="<%=j.getJobStatus() %>>" >
+											placeholder="Enter your Location" name="status"
+											required="required" value="<%=j.getJobStatus()%>">
 									</div>
-									&nbsp&nbsp&nbsp
 								</div>
 								<div class="form-group">
 									<label for="exampleInputPassword1">Enter Description</label>
 									<textarea rows="5" cols="" class="form-control"
 										placeholder="Enter Your Content" name="desc"
-										required="required"><%=j.getJobDesc() %></textarea>
+										required="required"><%=j.getJobDesc()%></textarea>
 								</div>
 								<br>
 								<div class="conatiner text-center">
-									<button type="submit" class="btn btn-primary ">Edit
+									<button type="submit" class="btn btn-primary "><i class="fa fa-edit"></i> Edit
 										Job</button>
 								</div>
 							</form>

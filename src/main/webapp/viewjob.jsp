@@ -61,7 +61,7 @@
 		} catch (Exception e) {
 		e.printStackTrace();
 		}
-		session.removeAttribute("delete-post");
+		session.removeAttribute("delete-job");
 		%>
 		<%
 		try {
@@ -93,7 +93,7 @@
 		} catch (Exception e) {
 		e.printStackTrace();
 		}
-		session.removeAttribute("edit-post");
+		session.removeAttribute("edit-job");
 		%>
 		<h2 class="text-center">All Jobs :</h2>
 
@@ -140,9 +140,9 @@
 						</p>
 						<div class="container text-center mt-2">
 							<a href="deleteServlet?job_id=<%=j.getId()%>"
-								class="btn btn-danger">Delete</a> <a
+								class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a> <a
 								href="edit.jsp?job_id=<%=j.getId()%>" class="btn btn-primary"
-								>Edit</a>
+								><i class="fa fa-edit"></i> Edit</a>
 						</div>
 						
 					</div>
@@ -156,14 +156,5 @@
 			</div>
 		</div>
 	</div>
-	
-
-	
-	
-		
-
-
-
-
 </body>
 </html>

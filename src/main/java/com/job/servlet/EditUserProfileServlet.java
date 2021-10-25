@@ -8,19 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.job.DAO.JobDAO;
+import com.job.DAO.UserDAO;
+import com.job.model.User;
 
 /**
- * Servlet implementation class deleteServlet
+ * Servlet implementation class EditUserProfileServlet
  */
-@WebServlet("/deleteServlet")
-public class deleteServlet extends HttpServlet {
+@WebServlet("/EditUserProfileServlet")
+public class EditUserProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public deleteServlet() {
+    public EditUserProfileServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,12 +30,20 @@ public class deleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id=request.getParameter("job_id");
-		JobDAO jd=new JobDAO();
-		boolean b=jd.deleteJob(id);
-		HttpSession session=request.getSession();
-		session.setAttribute("delete-job", b);
-		response.sendRedirect("viewjob.jsp");
+		
+			String id=request.getParameter("user_id");
+			String name=request.getParameter("name");
+			String username=request.getParameter("username");
+			String qualification=request.getParameter("qualification");
+			String email=request.getParameter("email");
+			String password=request.getParameter("password");
+			
+			User u=new User(name, username, email, password, qualification);
+			UserDAO ud=new UserDAO();
+			boolean b=ud.editProfile(u, id);
+			HttpSession session=request.getSession();
+			session.setAttribute("edit-profile", b);
+			response.sendRedirect("userDashboard.jsp");
 	}
 
 	/**

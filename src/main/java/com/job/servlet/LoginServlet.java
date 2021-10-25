@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.job.DAO.UserDAO;
 import com.job.model.User;
 
 /**
@@ -43,6 +44,17 @@ public class LoginServlet extends HttpServlet {
 			u.setRole("admin");
 			session.setAttribute("admin", u);
 			response.sendRedirect("adminDashboard.jsp");
+		}
+		UserDAO ud=new UserDAO();
+		u=ud.checkUser(username, password);
+		if(u!=null) {
+			session.setAttribute("user-login-success", u);
+			session.setAttribute("user-login", true);
+			response.sendRedirect("userDashboard.jsp");
+		}
+		else {
+			session.setAttribute("user-login-fail", false);
+			response.sendRedirect("Index.jsp");
 		}
 		
 	}

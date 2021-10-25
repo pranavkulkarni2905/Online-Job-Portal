@@ -30,13 +30,14 @@ public class EditJobServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id=Integer.parseInt(request.getParameter("job_id"));
+		String id=request.getParameter("id");
+		String title=request.getParameter("title");
 		String location=request.getParameter("location");
 		String category=request.getParameter("category");
 		String status=request.getParameter("status");
 		String desc=request.getParameter("desc");
 		
-		Job j=new Job(desc, location, category, status, desc);
+		Job j=new Job(title, location, category, status, desc);
 		JobDAO jd=new JobDAO();
 		boolean b=jd.editJob(j, id);
 		HttpSession session=request.getSession();

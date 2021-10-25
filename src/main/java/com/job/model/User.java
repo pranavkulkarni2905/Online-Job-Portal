@@ -8,6 +8,8 @@ public class User {
 	private String password;
 	private String qualification;
 	private String role;
+	private String id;
+	private String date;
 	public User() {
 		
 	}
@@ -54,6 +56,18 @@ public class User {
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
 	}
 	
 	

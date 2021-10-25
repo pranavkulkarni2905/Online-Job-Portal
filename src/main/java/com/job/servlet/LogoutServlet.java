@@ -30,7 +30,7 @@ public class LogoutServlet extends HttpServlet {
 		try {
 			HttpSession session=request.getSession();
 			session.removeAttribute("admin");
-			
+			session.removeAttribute("user-login-success");
 			HttpSession session2=request.getSession();
 			session.setAttribute("logout-msg", true);
 			response.sendRedirect("Index.jsp");

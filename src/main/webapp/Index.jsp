@@ -83,7 +83,26 @@ session.removeAttribute("user-create");
   }
   session.removeAttribute("logout-msg");
   %>
-  
+  <%
+  try{
+	  boolean b=(boolean)session.getAttribute("user-login-fail");
+	  if(b==false){
+		  %>
+		  <div class="alert alert-danger alert-dismissible fade show"
+			role="alert">
+			<strong>Ooops !</strong> Invalid Username or Password ..!
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		  <%
+	  }
+  }catch(Exception e){
+	  e.printStackTrace();
+  }
+  session.removeAttribute("user-login-fail");
+  %>
   <div class="bg">
   
 </div>

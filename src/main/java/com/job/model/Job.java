@@ -8,7 +8,7 @@ public class Job {
 	private String jobStatus;
 	private String jobDesc;
 	private String date;
-	private int id;
+	private String id;
 	public Job() {
 		
 	}
@@ -60,11 +60,11 @@ public class Job {
 		this.date = date;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	

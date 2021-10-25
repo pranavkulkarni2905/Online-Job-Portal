@@ -6,6 +6,21 @@
 <script src="sweetalert2.all.min.js"></script>
 
 <script src="sweetalert2.min.js"></script>
+<SCRIPT type="text/javascript">
+    window.history.forward();
+    function noBack() { window.history.forward(); }
+</SCRIPT>
+<%
+
+response.setHeader("Cache-Control","no-cache");
+response.setHeader("Cache-Control","no-store");
+response.setHeader("Pragma","no-cache");
+response.setDateHeader ("Expires", 0);
+    if(session.getAttribute("token")==null){
+    //response.sendRedirect(request.getContextPath() + "/LogOut.jsp");
+
+}
+%>
 <link rel="stylesheet" href="sweetalert2.min.css">
 
 <style>
@@ -28,8 +43,9 @@ body, html {
   background-size: cover;
 }
 </style>
+
 </head>
-<body>
+<body onload="noBack();" onpageshow="if (event.persisted) noBack();" onunload="">
 <%@include file="_nav.jsp" %>
 <%
   try{

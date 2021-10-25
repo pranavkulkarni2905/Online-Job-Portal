@@ -126,4 +126,31 @@ public class JobDAO {
 		}
 		return b;
 	}
+	public List<Job> searchJob(String category,String location ){
+		List<Job> list=new ArrayList<Job>();
+		Job j=null;
+		con=DBconnection.getConnection();
+		try {
+			ps=con.prepareStatement("select * from job_info where category=? and location=? order by job_date desc ");
+			ps.setString(1, category);
+			ps.setString(2, location);
+			ResultSet rs=ps.executeQuery();
+			
+			while(rs.next()) {
+				j=new Job();
+				j.setId(rs.getString(1));
+				j.setJobName(rs.getString(2));
+				j.setJobLocation(rs.getString(3));
+				j.setJobCategory(rs.getString(4));
+				j.setJobStatus(rs.getString(5));
+				j.setJobDesc(rs.getString(6));	
+				j.setDate(rs.getString(7));
+				list.add(j);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
 }

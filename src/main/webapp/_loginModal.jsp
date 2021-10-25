@@ -1,6 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<SCRIPT type="text/javascript">
+    window.history.forward();
+    function noBack() { window.history.forward(); }
+</SCRIPT>
+<%
 
+response.setHeader("Cache-Control","no-cache");
+response.setHeader("Cache-Control","no-store");
+response.setHeader("Pragma","no-cache");
+response.setDateHeader ("Expires", 0);
+    if(session.getAttribute("token")==null){
+    //response.sendRedirect(request.getContextPath() + "/LogOut.jsp");
+
+}
+%>
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
 	aria-labelledby="loginModal" aria-hidden="true">
 	<div class="modal-dialog" role="document">

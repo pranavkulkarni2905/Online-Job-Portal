@@ -1,7 +1,21 @@
 <%@page import="com.job.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<SCRIPT type="text/javascript">
+    window.history.forward();
+    function noBack() { window.history.forward(); }
+</SCRIPT>
+<%
 
+response.setHeader("Cache-Control","no-cache");
+response.setHeader("Cache-Control","no-store");
+response.setHeader("Pragma","no-cache");
+response.setDateHeader ("Expires", 0);
+    if(session.getAttribute("token")==null){
+    //response.sendRedirect(request.getContextPath() + "/LogOut.jsp");
+
+}
+%>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -67,7 +81,7 @@
 
 
 		<li class="nav-item active"><a class="nav-link"
-			href="userViewJob.jsp"><i class="fa fa-eye" aria-hidden="true"></i>
+			href="user_viewjob.jsp"><i class="fa fa-eye" aria-hidden="true"></i>
 				View Jobs</a></li>
 		</ul>
 		<a href="LogoutServlet" class="btn btn-light my-2 my-sm-0"

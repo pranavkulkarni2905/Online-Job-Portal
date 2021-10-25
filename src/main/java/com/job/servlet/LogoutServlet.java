@@ -28,9 +28,18 @@ public class LogoutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			
+			
 			HttpSession session=request.getSession();
 			session.removeAttribute("admin");
 			session.removeAttribute("user-login-success");
+			
+			response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+
+			response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+
+			response.setDateHeader("Expires", 0); // Proxies.
+            
 			HttpSession session2=request.getSession();
 			session.setAttribute("logout-msg", true);
 			response.sendRedirect("Index.jsp");
